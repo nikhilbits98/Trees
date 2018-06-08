@@ -6,11 +6,42 @@ Tree insert(Tree root, int key) {
 	}
 	else if (key > root->value) {
 		root->right = insert(root->right, key);
+		
 	}
 	else if (key < root->value) {
 		root->left = insert(root->left, key);
 	}
+	root->ht = 1 + max(getHt(root->left), getHt(root->right));
 	return root;
+}
+
+int getHt(Tree root) {
+	if (root == NULL)
+		return 0;
+	return root->ht;
+}
+
+int max(int a, int b) {
+	if (a > b)
+		return a;
+	else
+		return b;
+}
+
+int updateHeight(Tree root) {
+	if (root == NULL)
+		return -1;
+	int left, right;
+	left = updateHeight(root->left);
+	right = updateHeight(root->right);
+	if (left>right) {
+		root->ht= 1 + left;
+		return 1 + left;
+	}
+	else{
+		root->ht = 1 + right;
+		return 1 + right;
+	}	
 }
 
 Tree find(Tree root, int key) {
@@ -29,9 +60,11 @@ Tree deletes(Tree root, int key) {
 		return root;
 	else if (key > root->value) {
 		root->right = deletes(root->right, key);
+		root->ht = 1 + max(getHt(root->left), getHt(root->right));
 	}
 	else if (key < root->value) {
 		root->left = deletes(root->left, key);
+		root->ht = 1 + max(getHt(root->left), getHt(root->right));
 	}
 	if (key == root->value) {
 		if (root->left == NULL) {
@@ -49,6 +82,7 @@ Tree deletes(Tree root, int key) {
 			root->value = temp->value;
 			root->right = deletes(root->right, temp->value);
 		}
+		root->ht = 1 + max(getHt(root->left), getHt(root->right));
 		return root;
 			
 	}
@@ -64,7 +98,7 @@ void display(Tree root){
 	if (root == NULL)
 		return;
 	display(root->left);
-	printf("%d\t", root->value);
+	printf("%d(%d)\t", root->value,root->ht);
 	display(root->right);
 }
 
@@ -80,5 +114,14 @@ Tree newNode(int key) {
 	newT->value = key;
 	newT->left = NULL;
 	newT->right = NULL;
+	newT->ht = 1;
 	return newT;
+}
+
+void printUtil(Tree root, int space) {
+
+}
+
+void printTree(Tree root) {
+
 }

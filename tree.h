@@ -3,6 +3,7 @@
 #include<iostream>
 #include<time.h>
 
+#define COUNT 10
 
 using namespace std;
 
@@ -13,6 +14,7 @@ struct tree {
 	int value;
 	Tree left;
 	Tree right;
+	int ht;
 };
 
 //Prototype definitions
@@ -23,3 +25,9 @@ Tree newNode(int key);
 Tree findMin(Tree root);
 void display(Tree root);
 int getNum();
+
+void printUtil(Tree root, int space);
+void printTree(Tree root);
+
+int getHt(Tree root);
+int max(int a, int b);
