@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<iostream>
+#include<time.h>
+
 
 using namespace std;
 
@@ -16,6 +18,8 @@ struct tree {
 //Prototype definitions
 Tree insert(Tree root, int key);
 Tree find(Tree root, int key);
-Tree delete(Tree root, int key);
+Tree deletes(Tree root, int key);
 Tree newNode(int key);
 Tree findMin(Tree root);
+void display(Tree root);
+int getNum();
