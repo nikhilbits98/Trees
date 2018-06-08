@@ -105,7 +105,7 @@ void display(Tree root){
 int getNum()
 {	
 	//srand(time(0));
-	int num = (rand() % 500) + 1;
+	int num = (rand() % 100) + 1;
 	return num;
 }
 
@@ -118,10 +118,29 @@ Tree newNode(int key) {
 	return newT;
 }
 
-void printUtil(Tree root, int space) {
-
+void printUtil(Tree root, int level) {
+	if (root == NULL) {
+		cout << "   " << "\t\t";
+		return;
+	}			
+	if (level == 1) {
+		cout << setw(3) << setfill(' ') << root->value;
+		cout << "\t\t";
+	}
+	else if (level > 1)
+	{
+		printUtil(root->left, level - 1);
+		printUtil(root->right, level - 1);
+	}
 }
 
 void printTree(Tree root) {
-
+	int height = getHt(root);
+	for (int i = 1; i <= height; i++) {
+		for (int j = height - i + 1; j > 0; j--) {
+			cout << "\t";
+		}
+		printUtil(root, i);
+		cout << endl;
+	}
 }
