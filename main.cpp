@@ -20,6 +20,21 @@ void main() {
 	printTree(head);
 
 	/*
+	cout << endl;
+	cout << endl;
+
+	vector<vector<string>> printss;
+	printss = print2D(head);
+
+	for (int i = 0; i < printss.size(); i++) {
+		for (int j = 0; j < printss[i].size(); j++) {
+			printf("%s", printss[i][j]);
+		}
+		cout << endl;
+	}
+	*/
+
+	/*
 	cout << endl << "Finding 61:" << endl;
 	Tree del = find(head, 61);
 	if (del == NULL)

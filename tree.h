@@ -3,6 +3,8 @@
 #include<iostream>
 #include<time.h>
 #include<iomanip>
+#include<string.h>
+#include<vector>
 
 #define COUNT 10
 
@@ -32,3 +34,6 @@ void printTree(Tree root);
 
 int getHt(Tree root);
 int max(int a, int b);
+
+vector<vector<string>> print2D(Tree root);
+void fill(vector<vector<string>> res, Tree root, int i, int l, int r);
