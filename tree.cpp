@@ -148,21 +148,26 @@ void printTree(Tree root) {
 	}
 }
 
-/*
+
+
+
+
+
 //Solution read from internet.
+/*
 vector<vector<string>> print2D(Tree root) {
 	int height = getHt(root);
 	vector<vector<string>> res;
 	res.resize(height);
 	for (int i = 0; i < height; i++) {
-		//res[i].resize((1 << height) - 1);
+		res[i].resize((1 << height) - 1);
 		for (int j = 0; j < ((1 << height) - 1); j++) {
-			res[i].push_back("");
+			res[i][j] = "";
 		}
 	}
 	vector<vector<string>> ans;
 	ans.resize(height);
-	fill(res, root, 0, 0, res[0].size());
+	fill(res, root, 0, 0, ((1 << height) - 1));
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < ((1 << height) - 1); j++) {
 			ans[i].push_back(res[i][j]);
@@ -174,7 +179,45 @@ vector<vector<string>> print2D(Tree root) {
 void fill(vector<vector<string>> res, Tree root, int i, int l, int r) {
 	if (root == NULL)
 		return;
-	res[i][(l + r) / 2] = "" + root->value;
+	stringstream ss;
+	ss << root->value;
+	res[i][(l + r) / 2] = ss.str();
+	fill(res, root->left, i + 1, l, (l + r) / 2);
+	fill(res, root->right, i + 1, (l + r + 1) / 2, r);
+}
+*/
+
+
+
+
+
+
+/*
+vector<vector<int>> print2D(Tree root) {
+	int height = getHt(root);
+	vector<vector<int>> res;
+	res.resize(height);
+	for (int i = 0; i < height; i++) {
+		res[i].resize((1 << height) - 1);
+		for (int j = 0; j < ((1 << height) - 1); j++) {
+			res[i][j] = -1;
+		}
+	}
+	vector<vector<int>> ans;
+	ans.resize(height);
+	fill(res, root, 0, 0, ((1 << height) - 1));
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < ((1 << height) - 1); j++) {
+			ans[i].push_back(res[i][j]);
+		}
+	}
+
+	return ans;
+}
+void fill(vector<vector<int>> res, Tree root, int i, int l, int r) {
+	if (root == NULL)
+		return;
+	res[i][(l + r) / 2] = root->value;
 	fill(res, root->left, i + 1, l, (l + r) / 2);
 	fill(res, root->right, i + 1, (l + r + 1) / 2, r);
 }
