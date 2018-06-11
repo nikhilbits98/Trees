@@ -120,16 +120,19 @@ Tree newNode(int key) {
 
 void printUtil(Tree root, int level) {
 	if (root == NULL) {
-		cout << "   " << "\t\t";
+		cout << "";
 		return;
 	}			
-	if (level == 1) {
-		cout << setw(3) << setfill(' ') << root->value;
-		cout << "\t\t";
+	else if (level == 1) {
+		cout << setw(2) << setfill(' ') << root->value;
+		//cout << "  ";
 	}
 	else if (level > 1)
 	{
 		printUtil(root->left, level - 1);
+		if (level == 2) {
+			cout << "\t      ";
+		}
 		printUtil(root->right, level - 1);
 	}
 }
@@ -141,6 +144,6 @@ void printTree(Tree root) {
 			cout << "\t";
 		}
 		printUtil(root, i);
-		cout << endl;
+		cout << endl<<endl<<endl;
 	}
 }

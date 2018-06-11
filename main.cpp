@@ -17,7 +17,7 @@ void main() {
 	cout << endl;
 	cout << endl;
 
-	//printTree(head);
+	printTree(head);
 
 	/*
 	cout << endl << "Finding 61:" << endl;
